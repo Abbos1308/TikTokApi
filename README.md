@@ -17,7 +17,7 @@ Download video from Tiktok by this API
 # Example for using this api for Python3
 ```python3
 import requests
-api_url = "https://tiktokdownloaderapi.onrender.com"
+api_url = "https://tiktokdownloaderapi.onrender.com/tiktok"
 link = ""  # TikTok video url 
 params = {"url": link}
 response = requests.get(api_url, params=params)
