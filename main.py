@@ -33,12 +33,11 @@ async def download_tiktok_video(url: str):
 
     data = {
         'url': url,
-        'token': ''
     }
 
     headers["Content-Length"] = str(len(str(data)))
 
-    res = requests.post("https://tiktap.io/api.php", data=data, headers=headers)
+    res = requests.post("https://godownloader.com/api//tiktok-no-watermark-free", data=data, headers=headers)
     if res.status_code != 200:
         raise HTTPException(status_code=res.status_code, detail="Failed to fetch video data")
     response_json = res.json()
@@ -47,7 +46,9 @@ async def download_tiktok_video(url: str):
     if response_json["status"] != "success":
         raise HTTPException(status_code=400, detail="Failed to fetch video data")
 
-    video_data = response_json["video_data"]
+    video_data = response_json["no_watermark"]
+    if video_data:
+        return video_data
     video_url = None
 
     if "nwm_video_url_HQ" in video_data.keys():
